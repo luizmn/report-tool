@@ -42,7 +42,7 @@ If you are sure that the server is running, create the db with
 ```$ createdb news```   
 Then run the import command again.
 
-After that, execute/import the file **sqlCode.sql** with ```$ psql -d test -a -f sqlCode.sql ```   or 
+After that, execute/import the file **sqlCode.sql** with ```$ psql -d news -a -f sqlCode.sql ```   or 
 1. Open the file in a simple text editor;  
 2. Copy all the content, paste in the postgres shell and execute;  
 
