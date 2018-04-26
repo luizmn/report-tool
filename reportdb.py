@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # "Database code" for the DB Report.
 # Please execute create_views.sql before running this file
 

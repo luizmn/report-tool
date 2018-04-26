@@ -31,7 +31,7 @@ In other cases, just follow the detailed instructions below.
 ####1 - Setting up the database
 In order to use this report tool you must first import the news data (newsdata.sql) into your database.
 
-Assuming you already have PostgreSQL up and running (if not, try this article), you can import the data using this command:  
+Assuming you already have PostgreSQL up and running (if not, try this [article](https://www.postgresql.org/docs/9.3/static/tutorial-install.html)), you can import the data using this command:  
 ```$ psql -d news -f newsdata.sql```  
 If this command gives an error message, such as —
 ```psql: FATAL: database "news" does not exist```   
@@ -42,10 +42,11 @@ If you are sure that the server is running, create the db with
 ```$ createdb news```   
 Then run the import command again.
 
-After that, execute/import the file **sqlCode.sql** with ```$ psql -d news -a -f sqlCode.sql ```   or 
+After that, execute/import the file **sqlCode.sql** with ```$ psql -d news -a -f sqlCode.sql ```   or  
 1. Open the file in a simple text editor;  
 2. Copy all the content, paste in the postgres shell and execute;  
 
 ####2 - Running the script
 In the terminal/MS-DOS Prompt/Shell just run the following command 
-```$ python reportdb.py```
+```$ python reportdb.py```  
+After a few seconds, it will display the results.
