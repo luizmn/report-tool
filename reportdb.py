@@ -4,6 +4,7 @@
 
 import datetime
 import psycopg2
+import sys
 
 posts = ''
 
@@ -14,8 +15,9 @@ def db_connection():
     '''Connect to database'''
     try:
         dbcon = psycopg2.connect("dbname=news")
-    except:
-        print ("Unable to connect to the database")
+    except psycopg2.DatabaseError:
+        print("Error connecting to database")
+        sys.exit(1)
     return dbcon
 
 # Question 1
@@ -29,11 +31,11 @@ def top_authors(dbcon):
     cur.execute("select * from top_authors")
     posts = cur.fetchall()
     dbcon.close()
-    print ("\nTop Authors: \n")
+    print("\nTop Authors: \n")
     i = 0
     for post in posts:
         i += 1
-        print (i, "- Author: ", post[0], " - Views", post[1])
+        print(i, "- Author: ", post[0], " - Views", post[1])
 
 # Question 2
 # Get the 3 most read articles
@@ -46,11 +48,11 @@ def top_articles(dbcon):
     cur.execute("select * from top_articles limit 3")
     posts = cur.fetchall()
     dbcon.close()
-    print ("\nTop Articles: \n")
+    print("\nTop Articles: \n")
     i = 0
     for post in posts:
         i += 1
-        print (i, "- Article: ", post[0], " - Views", post[1])
+        print(i, "- Article: ", post[0], " - Views", post[1])
 
 # Question 3
 # Get the days with most errors
@@ -63,13 +65,14 @@ def error_days(dbcon):
     cur.execute("select access_date, rate from access_info")
     posts = cur.fetchall()
     dbcon.close()
-    print ("\nDays with error requests higher than 1%: \n")
+    print("\nDays with error requests higher than 1%: \n")
     i = 0
     for post in posts:
         i += 1
-        print (i, "- Date: ", post[0], " - Error rate:", post[1], "%")
+        print(i, "- Date: ", post[0], " - Error rate:", post[1], "%")
 
 
-top_authors(db_connection())
-top_articles(db_connection())
-error_days(db_connection())
+if __name__ == "__main__":
+    top_authors(db_connection())
+    top_articles(db_connection())
+    error_days(db_connection())

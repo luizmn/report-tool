@@ -29,6 +29,7 @@ CREATE VIEW top_authors AS (
        articles a,
        authors n
   WHERE n.id=a.author
+  and L.PATH=CONCAT('/article/', a.slug)
   GROUP BY n.name
   ORDER BY views DESC
 );
@@ -42,7 +43,7 @@ CREATE VIEW total_views AS (
 );
 
 /* Create view with access, and error rates ordered by errors value */
-CREATE OR REPLACE VIEW access_info AS (
+CREATE VIEW access_info AS (
   SELECT TO_CHAR((l.time::TIMESTAMP::date), 'Month DD,YYYY') AS access_date,
          tv.numviews,
          COUNT(l.status) AS total_errors,
